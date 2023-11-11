@@ -11,32 +11,8 @@ let selectedCategory = ref('')
 let IsProductAddedSuccessfully = ref(false)
 let selectedFile = ref(null)
 
-const MAX_FILE_SIZE = 1024 * 1024 * 5;
-const ACCEPTED_IMAGE_MIME_TYPES = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-];
-const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
-/* const validationSchema = z.object({
-    Product_name:z.string().min(3,{message:"name should have at least 3 charachters"}).max(100,{message:"name maximum charachters is 100"}),
-    Product_desc:z.string().min(3,{message:"description should have at least 3 charachters"}).max(100,{message:"description maximum charachters is 100"}),
-    Product_price:z.number().refine((value)=>value != "",{message:"set a price"}),
-    selectedCategory:z.string().refine((value)=>value != "",{message:"chose a category"}),
 
-    selectedFile : z
-          .any()
-          .refine((files) => files?.length == 1, "Image is required.")
-          .refine(
-            (files) => files?.[0]?.size <= MAX_FILE_SIZE,
-            `Max file size is 5MB.`
-          )
-          .refine(
-            (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-            ".jpg, .jpeg, .png and .webp files are accepted."
-          ),
-}) */
+
 
 const categories: Ref<Category[]> = ref([])
 const router = useRouter()
@@ -58,7 +34,7 @@ const handleFileProductChange = (event) => {
   const file = event.target.files[0]
   selectedFile.value = file
 }
-const submitFile = () => {
+const submitProduct = () => {
 
 
   const data = new FormData()
@@ -101,7 +77,7 @@ const submitFile = () => {
 <template>
   <!-- Card Section -->
   <div class="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-    <form @submit.prevent="submitFile()" enctype="multipart/form-data">
+    <form @submit.prevent="submitProduct()" enctype="multipart/form-data">
       <!-- Card -->
       <div class="bg-white rounded-xl shadow dark:bg-slate-900 my-10">
         <div class="pt-0 p-4 sm:pt-0 sm:p-7">

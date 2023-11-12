@@ -11,7 +11,6 @@ async function getData() {
     const response = await axios.get('http://127.0.0.1:8000/api/product')
     prodcuts.value = response.data
     filteredProducts.value = response.data
-    console.log(prodcuts.value)
   } catch (error) {
     console.error(error)
     //   this.error = 'Error fetching data from the API';
@@ -41,7 +40,6 @@ function filterByCategory(): void {
   if (textSearch.value == '') {
     // Show all products if "All" is selected
     filteredProducts.value = prodcuts.value
-    console.log(textSearch.value)
   } else {
     // Filter products based on the selected category
     filteredProducts.value = prodcuts.value.filter((product) =>
